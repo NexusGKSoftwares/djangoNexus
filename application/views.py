@@ -7,3 +7,5 @@ def about(request):
     return render(request, 'application/about.html')
 def contact(request):
     return render(request, 'application/contact.html')
+def base(request):
+    return render(request, 'application/base.html')
