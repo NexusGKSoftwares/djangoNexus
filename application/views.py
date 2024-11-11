@@ -1,11 +1,12 @@
 from django.shortcuts import render
 
+from application.forms import StudentForm
+
 def index(request):
-    return render(request, 'application/index.html')
+    return render(request, 'index.html')
 
 def about(request):
-    return render(request, 'application/about.html')
+    return render(request, 'about.html')
 def contact(request):
-    return render(request, 'application/contact.html')
-def base(request):
-    return render(request, 'application/base.html')
+    form = StudentForm()
+    return render(request, 'contact.html', {'forms': form})
