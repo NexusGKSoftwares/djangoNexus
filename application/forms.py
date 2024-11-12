@@ -14,5 +14,5 @@ class StudentForm(forms.ModelForm):
             'age': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter your age'}),
             'gender': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your gender'}),
             'course': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your course'}),
-
+            'image': forms.ImageField(attrs={'class': 'form-control', 'placeholder': 'Please your Image'})
         }
