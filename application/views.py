@@ -8,7 +8,8 @@ def index(request):
     return render(request, 'index.html')
 
 def about(request):
-    return render(request, 'about.html')
+    data =  Student.objects.all()
+    return render(request, 'about.html', {'data': data})
 
 def contact(request):
     if request.method == 'POST':
