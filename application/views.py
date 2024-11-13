@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 
 from application.forms import StudentForm
+from application.models import Student
 
 
 # Create your views here.
