@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Dynamic Content{% endblock %}
+
+{% block content %}
+    <h2>Dynamic Content</h2>
+    <div id="dynamic-content">
+        <!-- This content will be replaced by AJAX -->
+    </div>
+    <button id="load-content" class="btn btn-primary">Load Content</button>
+
+    <script>
+        document.getElementById('load-content').addEventListener('click', function() {
+            fetch('/dynamic-content/')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('dynamic-content').innerHTML = data;
+                });
+        });
+    </script>
+{% endblock %}
