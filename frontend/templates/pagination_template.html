@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Pagination Example{% endblock %}
+
+{% block content %}
+    <h2>Paginated List</h2>
+    <ul>
+        {% for item in items %}
+            <li>{{ item.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {% if items.has_previous %}
+            <a href="?page=1">&laquo; First</a>
+            <a href="?page={{ items.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span>Page {{ items.number }} of {{ items.paginator.num_pages }}</span>
+
+        {% if items.has_next %}
+            <a href="?page={{ items.next_page_number }}">Next</a>
+            <a href="?page={{ items.paginator.num_pages }}">Last &raquo;</a>
+        {% endif %}
+    </div>
+{% endblock %}
