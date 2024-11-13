@@ -9,3 +9,11 @@ def validate_price(value):
     """Validator for price to ensure it is positive"""
     if value <= 0:
         raise ValidationError("Price must be greater than zero.")
+from .validators import validate_phone_number
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['address', 'phone_number', 'profile_picture']
+    
+    phone_number = forms.CharField(validators=[validate_phone_number])
