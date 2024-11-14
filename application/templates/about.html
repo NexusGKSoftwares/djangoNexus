@@ -7,7 +7,11 @@
 About
 
 {% endblock %}
-
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
 
 <h3>Student Lists</h3>
 <table class="table">
