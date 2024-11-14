@@ -1,12 +1,13 @@
+# models.py
 from django.db import models
 
 class Student(models.Model):
-    name = models.CharField(max_length=20)
-    admission = models.CharField(max_length=20)
+    photo = models.ImageField(upload_to='photos/')
+    adm = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
     age = models.IntegerField()
-    gender = models.CharField(max_length=20)
-    course = models.CharField(max_length=20)
-    profile_picture = models.ImageField(upload_to='student_images/', blank=True, null=True)
-
+    gender = models.CharField(max_length=10)
+    course = models.CharField(max_length=50)
+    
     def __str__(self):
         return self.name
