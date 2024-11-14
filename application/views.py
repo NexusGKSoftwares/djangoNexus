@@ -1,4 +1,5 @@
 from email import message
+from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from application.forms import StudentForm
@@ -32,9 +33,11 @@ def edit(request,id):
         form = StudentForm(request.POST,request.FILES, instance=student)
         if form.is_valid():
             form.save()
-            message.success(request, 'student updated successfully')
+            messages.success(request, 'student updated successfully')
+            return redirect('about')
         else:
-            message.error(request, 'please check form details')
+            messages.error(request, 'please check form details')
+        
     else:
         form = StudentForm(instance=student)
     return render(request, 'edit.html', {'form':form,'student':student})
