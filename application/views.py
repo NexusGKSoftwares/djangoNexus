@@ -1,7 +1,9 @@
-from django.shortcuts import redirect, render
+from email import message
+from django.shortcuts import get_object_or_404, redirect, render
 
 from application.forms import StudentForm
 from application.models import Student
+from school_project import student
 
 
 # Create your views here.
@@ -23,4 +25,17 @@ def contact(request):
         form = StudentForm()    
     return render(request, 'contact.html', {'form': form})
 
-def edit
+def edit(request,id):
+    student = get_object_or_404(Student, id=id)
+    
+    if request.method == 'POST':
+        form = StudentForm(request.POST,request.FILES, instance=student)
+        if form.is_valid():
+            form.save()
+            message.success(request, 'student updated successfully')
+        else:
+            message.error(request, 'please check form details')
+    else:
+        form = StudentForm(instance=student)
+    return render(request, 'edit.html', {'form':form,'student':student})
+        
