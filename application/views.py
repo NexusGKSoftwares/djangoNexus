@@ -22,3 +22,5 @@ def contact(request):
     else:
         form = StudentForm()    
     return render(request, 'contact.html', {'form': form})
+
+def edit
