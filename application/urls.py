@@ -15,3 +15,7 @@ urlpatterns = [
 # Serve media files during development (when DEBUG=True)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = [
+    # other paths
+    path('students/edit/<int:student_id>/', views.student_edit, name='edit'),  # Use the name 'edit' here
+]
