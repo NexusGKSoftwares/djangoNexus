@@ -1,0 +1,17 @@
+<h3>Add a Course</h3>
+<form method="post">
+    {% csrf_token %}
+    <label for="course_id">Course ID:</label>
+    <input type="text" id="course_id" name="course_id" class="form-control" required>
+
+    <label for="name">Course Name:</label>
+    <input type="text" id="name" name="name" class="form-control" required>
+
+    <label for="duration">Duration (months):</label>
+    <input type="number" id="duration" name="duration" class="form-control" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" class="form-control"></textarea>
+
+    <button type="submit" class="btn btn-success mt-3">Add Course</button>
+</form>
