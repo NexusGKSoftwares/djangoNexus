@@ -11,5 +11,5 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('students/edit/<int:id>/', views.edit, name='edit'),
     path('students/delete/<int:id>/', views.delete, name='delete'),
-    path('studentsapi/', views.studentapi, name='studentapi')
+    path('studentsapi/', views.studentsapi, name='studentsapi'),
 ]
