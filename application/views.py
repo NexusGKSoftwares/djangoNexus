@@ -56,17 +56,20 @@ def delete(request,id):
     
     return redirect('about')
 
-@api_view(['GET','POST'])
+@api_view(['GET', 'POST'])
 def studentsapi(request):
     if request.method == 'GET':
+        # Fetch all students
         students = Student.objects.all()
-        serializer = StudentSerializer(student, many=True)
+        # Use the correct variable 'students' instead of 'student'
+        serializer = StudentSerializer(students, many=True)
         return JsonResponse(serializer.data, safe=False)
+
     elif request.method == 'POST':
+        # Create a new student
         serializer = StudentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
     
