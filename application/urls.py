@@ -10,6 +10,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('students/edit/<int:id>/', views.edit, name='edit'),
-    path('students/delete/<int:id>/', views.delete, name='delete'),
+    path('delete/<int:student_id>/', views.delete_student, name='delete'),
     path('studentsapi/', views.studentsapi, name='studentsapi'),
 ]
