@@ -11,3 +11,11 @@ class Student(models.Model):
     
     def __str__(self):
         return self.name
+class Course(models.Model):
+    course_id = models.CharField(max_length=20, unique=True)  
+    name = models.CharField(max_length=100)  
+    duration = models.IntegerField(help_text="Duration in months")  
+    description = models.TextField(blank=True)  
+
+    def __str__(self):
+        return f"{self.course_id} - {self.name}"
