@@ -102,3 +102,12 @@ def edit_course(request, id):
         return redirect('course_list')  # After saving, redirect to course list
 
     return render(request, 'edit_course.html', {'course': course})
+def delete_course(request, id):
+    # Fetch the course object using the provided ID
+    course = get_object_or_404(Course, id=id)
+
+    if request.method == 'POST':
+        course.delete()  # Delete the course
+        return redirect('course_list')  # Redirect to the course list page after deletion
+
+    return render(request, 'delete_course.html', {'course': course})
