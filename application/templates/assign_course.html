@@ -1,0 +1,13 @@
+<h3>Assign Courses to {{ student.name }}</h3>
+<form method="post">
+    {% csrf_token %}
+    <label for="courses">Select Courses:</label>
+    <select id="courses" name="courses" class="form-control" multiple>
+        {% for course in courses %}
+            <option value="{{ course.id }}" {% if course in student.courses.all %}selected{% endif %}>
+                {{ course.course_id }} - {{ course.name }} ({{ course.duration }} months)
+            </option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary mt-3">Assign</button>
+</form>
