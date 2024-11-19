@@ -11,7 +11,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('students/edit/<int:id>/', views.edit, name='edit'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Serve media files during development (when DEBUG=True)
 if settings.DEBUG:
