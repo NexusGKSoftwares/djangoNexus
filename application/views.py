@@ -6,6 +6,8 @@ from application.forms import StudentForm
 from application.models import Student
 from application.serializers import StudentSerializer
 from school_project import student
+from rest_framework import status
+from rest_framework.decorators import api_view
 
 
 # Create your views here.
