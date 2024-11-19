@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h3>Add a Course</h3>
 <form method="post">
     {% csrf_token %}
@@ -15,3 +18,5 @@
 
     <button type="submit" class="btn btn-success mt-3">Add Course</button>
 </form>
+
+{% endblock %}
