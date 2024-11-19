@@ -1,22 +1,42 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
-<h3>Add a Course</h3>
-<form method="post">
-    {% csrf_token %}
-    <label for="course_id">Course ID:</label>
-    <input type="text" id="course_id" name="course_id" class="form-control" required>
+<div class="container mt-5">
+    <h3 class="mb-4">Add a New Course</h3>
+    
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="course_id" class="form-label">Course ID:</label>
+                    <input type="text" id="course_id" name="course_id" class="form-control" placeholder="Enter Course ID" required>
+                </div>
 
-    <label for="name">Course Name:</label>
-    <input type="text" id="name" name="name" class="form-control" required>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Course Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter Course Name" required>
+                </div>
 
-    <label for="duration">Duration (months):</label>
-    <input type="number" id="duration" name="duration" class="form-control" required>
+                <div class="mb-3">
+                    <label for="duration" class="form-label">Duration (months):</label>
+                    <input type="number" id="duration" name="duration" class="form-control" placeholder="Enter Duration in months" required>
+                </div>
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" class="form-control"></textarea>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea id="description" name="description" class="form-control" rows="4" placeholder="Enter Course Description"></textarea>
+                </div>
 
-    <button type="submit" class="btn btn-success mt-3">Add Course</button>
-</form>
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Add Course</button>
+                    <a href="{% url 'course_list' %}" class="btn btn-secondary btn-lg">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
