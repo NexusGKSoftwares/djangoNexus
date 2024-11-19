@@ -1,0 +1,10 @@
+<tr>
+    <td>{{ student.name }}</td>
+    <td>
+        {% for course in student.courses.all %}
+            {{ course.course_id }} - {{ course.name }} ({{ course.duration }} months)<br>
+        {% empty %}
+            No courses assigned
+        {% endfor %}
+    </td>
+</tr>
