@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from application.forms import StudentForm
-from application.models import Student
+from application.models import Course, Student
 from application.serializers import StudentSerializer
 from school_project import student
 from rest_framework import status
@@ -63,3 +63,13 @@ def studentsapi(request):
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def add_course(request):
+    if request.method == 'POST':
+        course_id = request.POST['course_id']
+        name = request.POST['name']
+        duration = request.POST['duration']
+        description = request.POST['description']
+        Course.objects.create(course_id=course_id, name=name, duration=duration, description=description)
+        return redirect('course_list')
+    return render(request, 'add_course.html')
