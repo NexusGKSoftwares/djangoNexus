@@ -73,3 +73,14 @@ def add_course(request):
         Course.objects.create(course_id=course_id, name=name, duration=duration, description=description)
         return redirect('course_list')
     return render(request, 'add_course.html')
+
+def assign_course(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+    courses = Course.objects.all()
+
+    if request.method == 'POST':
+        selected_courses = request.POST.getlist('courses')  # Get selected course IDs
+        student.courses.set(selected_courses)  # Assign courses to the student
+        return redirect('students_list')
+
+    return render(request, 'assign_course.html', {'student': student, 'courses': courses})
