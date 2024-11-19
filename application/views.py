@@ -1,8 +1,10 @@
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from application.forms import StudentForm
 from application.models import Student
+from application.serializers import StudentSerializer
 from school_project import student
 
 
@@ -52,3 +54,16 @@ def delete(request,id):
     
     return redirect('about')
 
+@api_view(['GET','POST'])
+def studentsapi(request):
+    if request.method == 'GET':
+        students = Student.objects.all()
+        serializer = StudentSerializer(student, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'POST':
+        serializer = StudentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
