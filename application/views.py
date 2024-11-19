@@ -45,22 +45,17 @@ def edit(request,id):
         form = StudentForm(instance=student)
     return render(request, 'edit.html', {'form':form,'student':student})
         
-def delete(request,id):
-    student = get_object_or_404(Student, id=id)
-    
-    try:
-        student.delete()
-        messages.success(request, 'student deleted successfully')
-    except:
-        messages.error(request,'student deleted successfully')
-    
-    return redirect('about')
+def delete_student(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+    student.delete()
+    messages.success(request, "Student deleted successfully.")
+    return redirect('about')  
 
 @api_view(['GET', 'POST'])
 def studentsapi(request):
     if request.method == 'GET':
         students = Student.objects.all()
-        serializer = StudentSerializer(students, many=True)  # Use "students" not "student"
+        serializer = StudentSerializer(students, many=True)  
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         serializer = StudentSerializer(data=request.data)
