@@ -88,3 +88,17 @@ def assign_course(request, student_id):
         return redirect('students_list')
 
     return render(request, 'assign_course.html', {'student': student, 'courses': courses})
+def edit_course(request, id):
+    # Fetch the course object using the provided ID
+    course = get_object_or_404(Course, id=id)
+
+    if request.method == 'POST':
+        # Update course details with the data from the form
+        course.course_id = request.POST.get('course_id')
+        course.name = request.POST.get('name')
+        course.duration = request.POST.get('duration')
+        course.description = request.POST.get('description')
+        course.save()
+        return redirect('course_list')  # After saving, redirect to course list
+
+    return render(request, 'edit_course.html', {'course': course})
