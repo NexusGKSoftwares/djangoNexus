@@ -64,6 +64,10 @@ def studentsapi(request):
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+def course_list(request):
+    courses = Course.objects.all()
+    return render(request, 'course_list.html', {'courses': courses})
+
 def add_course(request):
     if request.method == 'POST':
         course_id = request.POST['course_id']
